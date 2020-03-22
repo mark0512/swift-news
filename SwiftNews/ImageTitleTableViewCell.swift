@@ -1,5 +1,5 @@
 //
-//  ImageTitleCell.swift
+//  ImageTitleTableViewCell.swift
 //  SwiftNews
 //
 //  Created by Mark Kim on 2020-03-20.
@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ImageTitleCell: UITableViewCell {
+class ImageTitleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailView.image = UIImage()
+    }
 }

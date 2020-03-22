@@ -31,3 +31,11 @@ extension APIRequest {
 struct GETSwiftNews: APIRequest {
     var baseURL = "https://www.reddit.com/r/swift/.json"
 }
+
+struct GETThumnail: APIRequest {
+    let baseURL: String
+    
+    init(baseURL: String) {
+        self.baseURL = baseURL
+    }
+}

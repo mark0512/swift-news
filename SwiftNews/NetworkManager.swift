@@ -6,7 +6,7 @@
 //  Copyright © 2020 Mark. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     static let shared = NetworkManager()
@@ -33,21 +33,5 @@ class NetworkManager {
         }
         
         task.resume()
-    }
-}
-
-
-
-enum NetworkError: Error {
-    case missing(String)
-    case generic
-    
-    var description: String {
-        switch self {
-        case .missing(let text):
-            return "Missing \(text)"
-        case .generic:
-            return "Network failed"
-        }
     }
 }
