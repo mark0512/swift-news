@@ -60,8 +60,9 @@ extension NewsListViewController: UITableViewDataSource {
         cell.titleLabel?.text = article.title
         cell.thumbnailView?.image = nil
         if article.hasThumbnail {
-            DispatchQueue.main.async {
-                cell.thumbnailView?.getImage(urlString: article.thumbnail)
+            cell.thumbnailView?.getImage(urlString: article.thumbnail) {
+                tableView.beginUpdates()
+                tableView.endUpdates()
             }
         }
         return cell

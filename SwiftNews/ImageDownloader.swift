@@ -12,7 +12,7 @@ let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
 
-    func getImage(urlString: String) {
+    func getImage(urlString: String, completion: @escaping () -> ()) {
         self.image = nil
         
         if let image = imageCache.object(forKey: urlString as NSString) {
@@ -27,6 +27,7 @@ extension UIImageView {
                     let imageToCache = UIImage(data: data!)
                     imageCache.setObject(imageToCache ?? UIImage(), forKey: urlString as NSString)
                     self.image = imageToCache
+                    completion()
                 }
 
             }.resume()
