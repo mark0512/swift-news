@@ -47,3 +47,9 @@ extension NewsListService {
         }
     }
 }
+
+extension NewsListService {
+    func getImage() {
+        
+    }
+}

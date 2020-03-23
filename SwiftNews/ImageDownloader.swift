@@ -8,37 +8,28 @@
 
 import UIKit
 
-extension UIImageView {
-    static let imageCache = NSCache<NSString, UIImage>()
+let imageCache = NSCache<NSString, UIImage>()
 
-    func getImage(url: String) {
-        if let image = UIImageView.imageCache.object(forKey: url as NSString) {
-            DispatchQueue.main.async {
-                self.image = image
-            }
-        } else {
-            downloadImage(url) { image in
-                if let image = image {
-                    DispatchQueue.main.async {
-                        self.image = image
-                    }
-                }
-            }
-        }
-    }
-    
-    private func downloadImage(_ imageURL: String, completion: @escaping (UIImage?) -> ()) {
-        guard let url = URL(string: imageURL) else {
-            return
-        }
+extension UIImageView {
+
+    func getImage(urlString: String) {
+        self.image = nil
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let data = data, let image = UIImage(data: data) {
-                UIImageView.imageCache.setObject(image, forKey: (imageURL as NSString))
-                completion(image)
-            } else {
-                completion(nil)
+        if let image = imageCache.object(forKey: urlString as NSString) {
+            self.image = image
+        } else {
+            guard let url = URL(string: urlString) else {
+                return
             }
-        }.resume()
+            
+            URLSession.shared.dataTask(with: url) { data, _, error in
+                DispatchQueue.main.async {
+                    let imageToCache = UIImage(data: data!)
+                    imageCache.setObject(imageToCache ?? UIImage(), forKey: urlString as NSString)
+                    self.image = imageToCache
+                }
+
+            }.resume()
+        }
     }
 }

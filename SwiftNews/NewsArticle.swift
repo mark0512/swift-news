@@ -48,6 +48,6 @@ struct NewsArticle: Decodable {
     }
     
     var hasThumbnail: Bool {
-        return !thumbnail.isEmpty
+        return thumbnail.hasPrefix("https://")
     }
 }

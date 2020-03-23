@@ -43,10 +43,6 @@ private extension NewsListViewController {
     func setUpTableView() {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        
-        tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
-
-        tableView.register(UINib(nibName: "ImageTitleTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageTitleTableViewCell")
     }
 }
 
@@ -58,23 +54,24 @@ extension NewsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = service.article(atIndexPath: indexPath)
-        
-        if article.hasThumbnail {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageTitleTableViewCell", for: indexPath) as? ImageTitleTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            cell.titleLabel?.text = article.title
-            cell.thumbnailView?.getImage(url: article.thumbnail) 
-            
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.titleLabel?.text = article.title
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageTitleTableViewCell", for: indexPath) as? ImageTitleTableViewCell else {
+             return UITableViewCell()
         }
+        cell.titleLabel?.text = article.title
+        cell.thumbnailView?.image = nil
+        if article.hasThumbnail {
+            DispatchQueue.main.async {
+                cell.thumbnailView?.getImage(urlString: article.thumbnail)
+            }
+        }
+        return cell
+    }
+}
+
+extension NewsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = service.article(atIndexPath: indexPath)
+        
     }
 }
 
