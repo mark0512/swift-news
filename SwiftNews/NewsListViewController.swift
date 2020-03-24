@@ -37,9 +37,7 @@ class NewsListViewController: UIViewController {
 // MARK: - setup tableview
 private extension NewsListViewController {
     func setUpTableView() {
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 60
-        tableView.tableFooterView = UIView()
+        tableView.removeFooter()
     }
 }
 

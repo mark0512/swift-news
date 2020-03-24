@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		E31795EC2429791000E66A02 /* NewsDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31795EB2429791000E66A02 /* NewsDetailService.swift */; };
 		E31795EE24297AA300E66A02 /* NewsDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31795ED24297AA300E66A02 /* NewsDetailTableViewCell.swift */; };
 		E31795F22429AE5100E66A02 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31795F12429AE5100E66A02 /* UIViewController+Extension.swift */; };
+		E32E044C2429B49400523167 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32E044B2429B49400523167 /* UITableView+Extension.swift */; };
 		E3F9A598242591F900C626B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F9A597242591F900C626B5 /* AppDelegate.swift */; };
 		E3F9A59A242591F900C626B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F9A599242591F900C626B5 /* SceneDelegate.swift */; };
 		E3F9A59C242591F900C626B5 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F9A59B242591F900C626B5 /* NewsListViewController.swift */; };
@@ -37,6 +38,7 @@
 		E31795EB2429791000E66A02 /* NewsDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailService.swift; sourceTree = "<group>"; };
 		E31795ED24297AA300E66A02 /* NewsDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailTableViewCell.swift; sourceTree = "<group>"; };
 		E31795F12429AE5100E66A02 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		E32E044B2429B49400523167 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		E3F9A594242591F900C626B5 /* SwiftNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3F9A597242591F900C626B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3F9A599242591F900C626B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				E31795F12429AE5100E66A02 /* UIViewController+Extension.swift */,
+				E32E044B2429B49400523167 /* UITableView+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3F9A59C242591F900C626B5 /* NewsListViewController.swift in Sources */,
+				E32E044C2429B49400523167 /* UITableView+Extension.swift in Sources */,
 				E31795EE24297AA300E66A02 /* NewsDetailTableViewCell.swift in Sources */,
 				E31795DC24273ADC00E66A02 /* NewsError.swift in Sources */,
 				E3F9A5B7242700D700C626B5 /* Request.swift in Sources */,
@@ -472,6 +476,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S8U236347A;
 				INFOPLIST_FILE = SwiftNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -490,6 +495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S8U236347A;
 				INFOPLIST_FILE = SwiftNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

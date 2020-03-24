@@ -13,7 +13,13 @@ extension UIViewController {
     func showSpinner(onView : UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = .clear
-        let indicatiorView = UIActivityIndicatorView.init(style: .large)
+        
+        var indicatiorView = UIActivityIndicatorView.init()
+        if #available(iOS 13.0, *) {
+            indicatiorView = UIActivityIndicatorView.init(style: .large)
+        } else {
+            indicatiorView = UIActivityIndicatorView.init(style: .whiteLarge)
+        }
         indicatiorView.startAnimating()
         indicatiorView.center = spinnerView.center
         
