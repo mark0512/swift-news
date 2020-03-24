@@ -12,10 +12,9 @@ class ImageTitleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
         thumbnailView.image = nil
     }
 }

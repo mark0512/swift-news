@@ -9,8 +9,38 @@
 import UIKit
 
 class NewsDetailViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+
+    var service: NewsDetailService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
+    }
+    
+    private func setUpTableView() {
+        tableView.tableFooterView = UIView()
+    }
+}
+
+extension NewsDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsDetailTableViewCell", for: indexPath) as? ImageTitleTableViewCell  else {
+            return UITableViewCell()
+        }
+        
+        cell.titleLabel?.text = service.article.desc
+        if service.article.hasThumbnail {
+            cell.thumbnailView?.getImage(urlString: service.article.thumbnail) {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+        
+        return cell
     }
 }

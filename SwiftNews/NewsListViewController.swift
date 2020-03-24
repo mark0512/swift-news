@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class NewsListViewController: UIViewController {
 
@@ -19,13 +18,10 @@ class NewsListViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.showSpinner(onView: self.view)
         service.fetchArticles { [weak self] error in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: self.view, animated: true)
-            }
-            
+            self.removeSpinner()
             if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
@@ -43,6 +39,7 @@ private extension NewsListViewController {
     func setUpTableView() {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
+        tableView.tableFooterView = UIView()
     }
 }
 
@@ -58,7 +55,6 @@ extension NewsListViewController: UITableViewDataSource {
              return UITableViewCell()
         }
         cell.titleLabel?.text = article.title
-        cell.thumbnailView?.image = nil
         if article.hasThumbnail {
             cell.thumbnailView?.getImage(urlString: article.thumbnail) {
                 tableView.beginUpdates()
@@ -71,8 +67,16 @@ extension NewsListViewController: UITableViewDataSource {
 
 extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let article = service.article(atIndexPath: indexPath)
+        let storyboard = UIStoryboard(name: "NewsDetailViewController", bundle: nil)
+
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as? NewsDetailViewController else {
+            return
+        }
         
+        detailVC.service = NewsDetailService(article)
+        self.show(detailVC, sender: nil)
     }
 }
 
