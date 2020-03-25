@@ -63,13 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A2A370F0EE140B78AFF74C2E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		E31795D12427288F00E66A02 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,13 +178,23 @@
 			name = Feature;
 			sourceTree = "<group>";
 		};
+		E32E044D2429C61400523167 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E31795F02429AE3D00E66A02 /* Extensions */,
+				E31795DA24273ACA00E66A02 /* Constant */,
+				E31795D724272B0D00E66A02 /* Model */,
+				E3F9A5B32427009300C626B5 /* Network */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		E3F9A58B242591F900C626B5 = {
 			isa = PBXGroup;
 			children = (
 				E3F9A596242591F900C626B5 /* SwiftNews */,
 				E3F9A595242591F900C626B5 /* Products */,
 				E31795D2242728A400E66A02 /* Resources */,
-				A2A370F0EE140B78AFF74C2E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,12 +209,9 @@
 		E3F9A596242591F900C626B5 /* SwiftNews */ = {
 			isa = PBXGroup;
 			children = (
+				E32E044D2429C61400523167 /* Core */,
 				E31795F32429AFC600E66A02 /* Feature */,
-				E31795F02429AE3D00E66A02 /* Extensions */,
-				E31795DA24273ACA00E66A02 /* Constant */,
 				E31795D12427288F00E66A02 /* AppDelegate */,
-				E3F9A5B32427009300C626B5 /* Network */,
-				E31795D724272B0D00E66A02 /* Model */,
 			);
 			path = SwiftNews;
 			sourceTree = "<group>";
