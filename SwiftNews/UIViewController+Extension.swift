@@ -7,9 +7,10 @@
 //
 import UIKit
 
-var spinningView: UIView?
 
 extension UIViewController {
+    static var spinningView: UIView?
+
     func showSpinner(onView : UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = .clear
@@ -28,13 +29,13 @@ extension UIViewController {
             onView.addSubview(spinnerView)
         }
         
-        spinningView = spinnerView
+        UIViewController.spinningView = spinnerView
     }
     
     func removeSpinner() {
         DispatchQueue.main.async {
-            spinningView?.removeFromSuperview()
-            spinningView = nil
+            UIViewController.spinningView?.removeFromSuperview()
+            UIViewController.spinningView = nil
         }
     }
 }

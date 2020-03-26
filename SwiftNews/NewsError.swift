@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: LocalizedError {
     case missing(String)
     case generic
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .missing(let text):
             return "Missing \(text)"
@@ -22,10 +22,10 @@ enum NetworkError: Error {
     }
 }
 
-enum ParseError: Error {
+enum ParseError: String, LocalizedError {
     case generic
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         default:
             return "Unable to parse"

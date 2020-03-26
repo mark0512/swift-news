@@ -8,38 +8,33 @@
 
 import Foundation
 
-struct Response: Decodable {
+struct ArticleLists: Decodable {
     let data: TopData
     
-    var newsArticles: [NewsArticle] {
-        var articles: [NewsArticle] = []
-        for child in data.articles {
-            articles.append(child.article)
+    struct TopData: Decodable {
+        let articles: [Children]
+
+        enum CodingKeys: String, CodingKey {
+            case articles = "children"
         }
-        return articles
+        struct Children: Decodable {
+            let article: NewsArticle
+            
+            enum CodingKeys: String, CodingKey {
+                case article = "data"
+            }
+        }
     }
-}
-
-struct TopData: Decodable {
-    let articles: [Children]
     
-    enum CodingKeys: String, CodingKey {
-        case articles = "children"
-    }
-}
-
-struct Children: Decodable {
-    let article: NewsArticle
-    
-    enum CodingKeys: String, CodingKey {
-        case article = "data"
+    var newsArticles: [NewsArticle] {
+        return data.articles.map { $0.article }
     }
 }
 
 struct NewsArticle: Decodable {
-    let title: String
-    let thumbnail: String
-    let desc: String
+    let title: String?
+    let thumbnail: String?
+    let desc: String?
     
     enum CodingKeys: String, CodingKey {
         case title = "title"
@@ -48,6 +43,6 @@ struct NewsArticle: Decodable {
     }
     
     var hasThumbnail: Bool {
-        return thumbnail.hasPrefix("https://")
+        return thumbnail?.hasPrefix("https://") ?? false
     }
 }

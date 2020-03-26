@@ -27,16 +27,11 @@ extension NewsListService {
 extension NewsListService {
     func fetchArticles(completion: @escaping (Error?) -> ()) {
         let request = GETSwiftNews()
-        NetworkManager.shared.execute(request) { [weak self] result in
+        NetworkManager.shared.genericExecute(request) { [weak self] (result: Result<ArticleLists, Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                guard let response = try? JSONDecoder().decode(Response.self, from: data) else {
-                    completion(ParseError.generic)
-                    return
-                }
-                
-                self.newsArticles = response.newsArticles
+                self.newsArticles = data.newsArticles
                 completion(nil)
                 return
             

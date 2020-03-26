@@ -6,31 +6,37 @@
 //  Copyright © 2020 Mark. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-let imageCache = NSCache<NSString, UIImage>()
-
-extension UIImageView {
-
-    func getImage(urlString: String, completion: @escaping () -> ()) {
-        self.image = nil
-        
-        if let image = imageCache.object(forKey: urlString as NSString) {
-            self.image = image
-        } else {
-            guard let url = URL(string: urlString) else {
-                return
-            }
-            
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                DispatchQueue.main.async {
-                    let imageToCache = UIImage(data: data!)
-                    imageCache.setObject(imageToCache ?? UIImage(), forKey: urlString as NSString)
-                    self.image = imageToCache
-                    completion()
-                }
-
-            }.resume()
+class ImageDownloaderQueue {
+    static let shared = ImageDownloaderQueue()
+    var downloadQueue = Set<String>()
+    
+    /**
+     Add url string to download queue
+     - Returns: Boolean if success insert into queue
+     */
+    func didAddQueue(_ urlString: String) -> Bool {
+        if !isExisted(urlString) {
+            downloadQueue.insert(urlString)
+            return true
         }
+        
+        return false
+    }
+    
+    /**
+     Remove url from the queue
+     */
+    func removeQueue(_ urlSting: String) {
+        downloadQueue.remove(urlSting)
+    }
+    
+    /**
+     Check if url is existed in download queue
+     - Returns: Boolean if url is exited in queue
+     */
+    private func isExisted(_ urlString: String) -> Bool {
+        return downloadQueue.contains(urlString)
     }
 }
