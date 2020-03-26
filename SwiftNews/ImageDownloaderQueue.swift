@@ -1,5 +1,5 @@
 //
-//  ImageDownloader.swift
+//  ImageDownloaderQueue.swift
 //  SwiftNews
 //
 //  Created by Mark Kim on 2020-03-22.
@@ -10,13 +10,13 @@ import Foundation
 
 class ImageDownloaderQueue {
     static let shared = ImageDownloaderQueue()
-    var downloadQueue = Set<String>()
+    private(set) var downloadQueue = Set<String>()
     
     /**
      Add url string to download queue
      - Returns: Boolean if success insert into queue
      */
-    func didAddQueue(_ urlString: String) -> Bool {
+    @discardableResult func didAddQueue(_ urlString: String) -> Bool {
         if !isExisted(urlString) {
             downloadQueue.insert(urlString)
             return true
@@ -36,7 +36,7 @@ class ImageDownloaderQueue {
      Check if url is existed in download queue
      - Returns: Boolean if url is exited in queue
      */
-    private func isExisted(_ urlString: String) -> Bool {
+    func isExisted(_ urlString: String) -> Bool {
         return downloadQueue.contains(urlString)
     }
 }
