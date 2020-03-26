@@ -11,7 +11,7 @@ import UIKit
 extension UIImageView {
     static let imageCache = NSCache<NSString, UIImage>()
 
-    func getImage(urlString: String?, completion: @escaping () -> ()) {
+    func getImage(urlString: String?, completion: (() -> ())? = nil) {
         guard let urlString = urlString else {
             return
         }
@@ -31,7 +31,7 @@ extension UIImageView {
                         UIImageView.imageCache.setObject(imageToCache ?? UIImage(), forKey: urlString as NSString)
                         self.image = imageToCache
                         ImageDownloaderQueue.shared.removeQueue(urlString)
-                        completion()
+                        completion?()
                     }
 
                 }.resume()

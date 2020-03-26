@@ -10,6 +10,11 @@ import XCTest
 @testable import SwiftNews
 
 class ImageDownloaderQueueTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        ImageDownloaderQueue.shared.reset()
+    }
+    
     func testDidAddQueueForEmptyQueue() {
         XCTAssertTrue(ImageDownloaderQueue.shared.didAddQueue("a"), "URL \"a\" must be added to empty queue")
     }

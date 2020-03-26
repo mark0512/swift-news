@@ -39,4 +39,8 @@ class ImageDownloaderQueue {
     func isExisted(_ urlString: String) -> Bool {
         return downloadQueue.contains(urlString)
     }
+    
+    func reset() {
+        downloadQueue.removeAll()
+    }
 }
