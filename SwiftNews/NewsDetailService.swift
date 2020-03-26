@@ -15,8 +15,3 @@ class NewsDetailService {
         self.article = article
     }
 }
-
-// MARK: - datasource
-extension NewsDetailService {
-    
-}
