@@ -595,7 +595,6 @@
 		E3F9A5A9242591FB00C626B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S8U236347A;
 				INFOPLIST_FILE = SwiftNews/Info.plist;
@@ -614,7 +613,6 @@
 		E3F9A5AA242591FB00C626B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S8U236347A;
 				INFOPLIST_FILE = SwiftNews/Info.plist;
